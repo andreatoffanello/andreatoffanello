@@ -1,0 +1,28 @@
+baseURL = "https://andreatoffanello.com"
+languageCode = "en-us"
+title = "Andrea Toffanello"
+theme = "at"
+
+DefaultContentLanguage = "En"
+
+enableRobotsTXT= "true"
+
+coverimg= "andrea_toffanello_main.jpg"
+
+publishDir = "docs"
+
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 1
+
+
+
+[params]
+	Tagline = "Digital designer"
+
+	coverimg = "cover.jpg"
+	
+	logo = "andrea_toffanello_logo.png"
+	
+	twitter = "@toffa_90"

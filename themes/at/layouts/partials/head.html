@@ -1,0 +1,40 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{{ if .IsTranslated }}
+    {{ range .AllTranslations }}
+    <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
+    {{ end }}
+{{ end }}
+
+
+
+<meta name="description" content="
+{{ if .IsHome }}
+	{{ .Site.Params.description }}
+{{ else }}
+	{{ .Description }}
+{{ end }}"/>
+
+<meta name="robots" content="noodp"/>
+
+<link rel="canonical" href="{{ .Permalink }}" />
+
+{{ partial "head_scripts/fb_meta.html" . }}
+{{ partial "head_scripts/tw_meta.html" . }}
+{{ partial "head_scripts/schema_meta.html" . }}
+{{ partial "head_scripts/analytics.html" . }}
+
+
+<!-- == JQUERY == -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<!-- == BARBA.JS == -->
+<script src="{{ .Site.BaseURL }}js/barba.min.js"></script>
+
+<!-- == MAIN == -->
+<script src="{{ .Site.BaseURL }}js/main.js"></script>
+
+
+<!-- == STYLE == -->
+<link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}css/style.css">
