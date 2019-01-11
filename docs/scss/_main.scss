@@ -291,10 +291,15 @@ nav {
     display: grid;
 
     &.homepage {
-        grid-template-columns: 4fr 3fr 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr;
-        grid-template-areas: "image content .";
+        grid-template-areas: "image content";
         height: 100vh;
+
+        @media (max-width: 1080px){
+            display: block;
+            height: auto;
+        }
 
         .main_img {
             grid-area: image;
@@ -302,6 +307,10 @@ nav {
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: 1fr;
+
+            @media (max-width: 1080px){
+                height: 50vh;
+            }
 
             &:after {
                 content: "";
@@ -324,7 +333,7 @@ nav {
                 grid-area: 1 / 1 / 2 / 2; 
                 place-self: center;
                 height: 300px;
-                width: 100%;
+                width: 80%;
                 max-width: 400px;
                 object-fit: contain;
                 mix-blend-mode: difference;
@@ -336,6 +345,14 @@ nav {
             overflow-y: scroll;
             padding: 180px 56px;
             color: $text;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+
+            @media (max-width: 1080px){
+                display: block;
+                height: auto;
+                padding: 32px;
+            }
 
             .description {
                 margin-bottom: 64px;
@@ -363,7 +380,7 @@ nav {
 
             .partner-grid {
                 display: grid;
-                grid-auto-columns: 120px;
+                grid-auto-columns: minmax(auto, 120px);
                 grid-auto-flow: column;
                 grid-gap: 32px;
                 margin-bottom: 60px;
@@ -383,11 +400,24 @@ nav {
     margin-bottom: 100px;
     grid-gap: 32px 64px;
 
+    @media (max-width: 1080px){
+        grid-gap: 32px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: "gridtitle"
+                             "left" 
+                             "right";
+    }
+
     .link_heading {
         grid-area: gridtitle;
         display: grid;
         grid-template-columns: auto 1fr;
         align-items: center;
+
+        @media (max-width: 1080px){
+            grid-template-columns: 1fr;
+        }
 
         h2 {
             color: $main;
