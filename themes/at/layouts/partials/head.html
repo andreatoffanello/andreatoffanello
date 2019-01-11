@@ -1,12 +1,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ .Title }}</title>
+<meta name="title" content="{{ .Title }}"/>
 
 {{ if .IsTranslated }}
     {{ range .AllTranslations }}
     <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
     {{ end }}
 {{ end }}
-
-<meta name="title" content="{{ .Title }}"/>
 
 <meta name="description" content="
 {{ if .IsHome }}
