@@ -21,6 +21,8 @@ publishDir = "docs"
 [params]
 	Tagline = "Digital designer"
 
+	description = "Full-time pirate with passion for digital design stuff. I spend most of my time designing and developing websites and app interfaces and many kind of digital assets like graphics, videos and music."
+
 	coverimg = "cover.jpg"
 	
 	logo = "andrea_toffanello_logo.png"
