@@ -346,7 +346,7 @@ nav {
             padding: 180px 56px;
             color: $text;
             display: grid;
-            grid-template-columns: 3fr 1fr;
+            grid-template-columns: 1fr;
 
             @media (max-width: 1080px){
                 display: block;
@@ -392,22 +392,23 @@ nav {
 
 .link_grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    grid-template-areas: "gridtitle gridtitle"
-                         "left right";
+    grid-gap: 32px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "gridtitle"
+                         "left" 
+                         "right";
     width: auto;
     margin-bottom: 100px;
-    grid-gap: 32px 64px;
-
-    @media (max-width: 1080px){
-        grid-gap: 32px;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        grid-template-areas: "gridtitle"
-                             "left" 
-                             "right";
-    }
+    
+//    @media (max-width: 1080px){
+//        grid-gap: 32px;
+//        grid-template-columns: 1fr;
+//        grid-template-rows: auto auto auto;
+//        grid-template-areas: "gridtitle"
+//                             "left" 
+//                             "right";
+//    }
 
     .link_heading {
         grid-area: gridtitle;
@@ -445,7 +446,7 @@ nav {
 
 .link_name {
     display: grid;
-    grid-template-columns: auto 1fr 1fr;
+    grid-template-columns: auto auto 1fr;
     align-items: center;
     grid-template-rows: 30px;
     text-decoration: none;
@@ -460,6 +461,7 @@ nav {
     span {
         color: $main;
         font-size: 20px;
+        padding-right: 32px;
         
     }
 
@@ -467,7 +469,7 @@ nav {
         opacity: 0;
         transition: .5s;
         font-size: 14px;
-        justify-self: end;
+        justify-self: start;
         position: relative;
         left: -20px;
 
