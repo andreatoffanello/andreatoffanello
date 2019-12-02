@@ -22,6 +22,29 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
 }
 
+/*********************
+BREAKPOINTS
+*********************/
+
+ @mixin breakpoint($point) {
+   @if $point == desktop {
+     @media (min-width: 992px) { @content ; }
+  }
+   @else if $point == medium {
+     @media (min-width: 768px) { @content ; }
+  }
+
+  @else if $point == mobile {
+     @media (max-width: 768px)  { @content ; }
+
+  }
+}
+
+$main: #ffffff;
+
+$half: rgba(255, 255, 255, 0.5);
+
+
 html,body{
     margin: 0;
     display: block;
@@ -46,6 +69,10 @@ body {
         overflow: hidden;
     }
 }
+
+$ease: cubic-bezier(.3,0,0,1);
+
+$easeOut: cubic-bezier(0.075, 0.82, 0.165, 1);
 
 @keyframes blink {
     0% {
@@ -76,6 +103,62 @@ body {
         object-fit: contain;
         animation: blink infinite 1.5s ease-in-out;
     }
+}
+
+
+// Cursor
+
+a {
+	cursor: none;
+
+	@include breakpoint(mobile) {
+    	cursor: inherit;
+	}
+}
+
+.cursor,
+.follow {
+    position: fixed;
+    pointer-events: none;
+    width: 0.5rem;
+    height: 0.5rem;
+    z-index: 999999;
+    will-change: left, top;
+    transform: translate(-50%, -50%);
+
+    @include breakpoint(mobile) {
+    	display: none;
+	}
+}
+
+.cursor {
+    background-color: $main;
+    border-radius: 50%;
+    //mix-blend-mode: difference;
+
+    &.on_hover {
+	    background-color: transparent;
+	}
+}
+
+.follow {
+    padding: 0.4rem;
+    border: 1px solid $half;
+    border-radius: 2rem;
+    transition: all .3s $easeOut;
+    //mix-blend-mode: difference;
+    opacity: 1;
+    background: transparent;
+
+
+    &.on_hover {
+    	padding: 0.8rem;
+	    border: 0;
+	    background: $main;
+	    opacity: .2;
+	    // transform: scale(2);
+	    // transform-origin: 100% 100%;
+	}
 }
 
 // NAV
@@ -120,7 +203,7 @@ nav {
         position: absolute;
         background: #ffffff;
         opacity: 0;
-        transition: 0.3s ease-in-out;
+        transition: 0.3s $ease;
     }
 
     &.nav-up {
@@ -136,7 +219,7 @@ nav {
         &::before {
             content: "";
             opacity: 1;
-            transition: 0.3s ease-in-out;
+            transition: 0.3s $ease;
         }
     }
 
@@ -168,7 +251,7 @@ nav {
                 top: 120%;
                 left: 0;
                 opacity: 0;
-                transition: .5s cubic-bezier(0,.5,.2,1);
+                transition: .5s $ease;
             }
 
             &:hover {
@@ -176,7 +259,7 @@ nav {
                 &:after {
                     top: 100%;
                     opacity: .5;
-                    transition: .5s cubic-bezier(0,.5,.2,1);
+                    transition: .5s $ease;
                 }
             }
         }
@@ -214,12 +297,12 @@ nav {
             transform: translate(0, 12px);
             opacity: 1;
             animation-delay: .3s;
-        } 
+        }
 
         &:nth-child(3) {
             transform: rotate(0) translate(0, 24px);
             animation-delay: .6s;
-        }  
+        }
 
     }
 
@@ -237,11 +320,11 @@ nav {
             &:nth-child(2) {
                 transform: translate(50px, 0);;
                 opacity: 0;
-            } 
+            }
 
             &:nth-child(3) {
                 transform: rotate(-45deg) translate(-10px, 10px);
-            }  
+            }
         }
     }
 }
@@ -323,14 +406,14 @@ nav {
             }
 
             .img {
-                grid-area: 1 / 1 / 2 / 2; 
+                grid-area: 1 / 1 / 2 / 2;
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
             }
 
             .logo {
-                grid-area: 1 / 1 / 2 / 2; 
+                grid-area: 1 / 1 / 2 / 2;
                 place-self: center;
                 height: 300px;
                 width: 80%;
@@ -385,6 +468,20 @@ nav {
                 grid-gap: 32px;
                 margin-bottom: 60px;
                 align-items: center;
+
+                .partner {
+                    transform: scale(1);
+                    transition: .3s $ease;
+
+                    &:hover {
+                        transform: scale(.9);
+                        transition: .3s $ease;
+                    }
+                }
+            }
+
+            .content {
+                padding-bottom: 200px;
             }
         }
     }
@@ -396,17 +493,17 @@ nav {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     grid-template-areas: "gridtitle"
-                         "left" 
+                         "left"
                          "right";
     width: auto;
     margin-bottom: 100px;
-    
+
 //    @media (max-width: 1080px){
 //        grid-gap: 32px;
 //        grid-template-columns: 1fr;
 //        grid-template-rows: auto auto auto;
 //        grid-template-areas: "gridtitle"
-//                             "left" 
+//                             "left"
 //                             "right";
 //    }
 
@@ -450,6 +547,8 @@ nav {
     align-items: center;
     grid-template-rows: 30px;
     text-decoration: none;
+    transform: scale(1);
+    transition: .3s $ease;
 
     .icon {
         height: 24px;
@@ -462,7 +561,7 @@ nav {
         color: $main;
         font-size: 20px;
         padding-right: 32px;
-        
+
     }
 
     .see {
@@ -485,12 +584,14 @@ nav {
     }
 
     &:hover {
+        transform: scale(.9);
+        transition: .3s $ease;
 
         .see {
             opacity: 1;
             transition: .5s;
             left: 0px;
-        } 
+        }
 
     }
 }
@@ -518,13 +619,13 @@ nav {
         position: absolute;
         bottom: 0;
         z-index: 1;
-    }    
+    }
 
     img {
         width: 100%;
         height:100%;
         object-fit: cover;
-        grid-area: 1 / 1 / 3 / 2; 
+        grid-area: 1 / 1 / 3 / 2;
     }
 
     .title {
@@ -532,7 +633,7 @@ nav {
         z-index: 2;
         padding: 16px;
         text-shadow: 1px 1px 5px rgba(0,0,0,0.1);
-        
+
         p {
             margin: 0;
             font-weight: 800;
@@ -542,7 +643,7 @@ nav {
             margin-top: 8px;
             font-size: 14px;
             font-weight: 300;
-        } 
+        }
     }
 }
 
@@ -551,8 +652,3 @@ nav {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-
-
-
-
